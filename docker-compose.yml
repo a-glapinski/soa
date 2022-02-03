@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  rest-db:
+    container_name: rest-db
+    image: postgres:14.1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: rest-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  soap-db:
+    container_name: soap-db
+    image: postgres:14.1
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: soap-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9.13-management
+    volumes:
+#      - ./rabbitconfig/data:/var/lib/rabbitmq:rw
+      - ./rabbitconfig/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./rabbitconfig/advanced.config:/etc/rabbitmq/advanced.config:ro
+    ports:
+      - "5672:5672"
+      - "15672:15672"

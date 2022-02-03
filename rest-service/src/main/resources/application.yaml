@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/rest-db
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  sql:
+    init:
+      encoding: UTF-8
+  rabbitmq:
+    listener:
+      simple:
+        auto-startup: true
+        default-requeue-rejected: false
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
