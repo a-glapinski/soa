@@ -14,7 +14,7 @@ class RabbitEventPublisher(
     fun <T> publish(event: RabbitEvent<T>) {
         try {
             rabbitTemplate.convertAndSend(REST_QUEUE, event)
-            logger.info { "Event: $event published" }
+            logger.info { "Published event: $event" }
         } catch (ex: Exception) {
             logger.error(ex) { "Sending event: $event failed" }
         }
