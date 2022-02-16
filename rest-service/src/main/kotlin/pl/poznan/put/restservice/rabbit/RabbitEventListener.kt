@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
 import pl.poznan.put.restservice.account.AccountService
 import pl.poznan.put.restservice.account.event.RollbackAccountDeleted
-import pl.poznan.put.restservice.rabbit.EventsConfig.Companion.SOAP_QUEUE
+import pl.poznan.put.restservice.rabbit.config.EventsConfig.Companion.SOAP_QUEUE
 
 @Component
 @RabbitListener(queues = [SOAP_QUEUE])

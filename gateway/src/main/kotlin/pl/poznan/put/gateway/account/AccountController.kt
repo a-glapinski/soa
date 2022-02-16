@@ -1,4 +1,4 @@
-package pl.poznan.put.restservice.account
+package pl.poznan.put.gateway.account
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import pl.poznan.put.gateway.account.dto.AccountDTO
 
+@RequestMapping("/accounts")
 @RestController
-@RequestMapping("accounts")
 class AccountController(
-    private val accountService: AccountService
+    private val accountServiceClient: AccountServiceClient
 ) {
     @GetMapping
     fun getAll(): List<AccountDTO> =
-        accountService.getAll()
+        accountServiceClient.getAllAccounts()
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody account: AccountDTO): AccountDTO =
-        accountService.create(account)
+        accountServiceClient.createAccount(account)
 
     @DeleteMapping("/{accountId}")
-    fun delete(@PathVariable accountId: String) {
-        accountService.delete(accountId)
-    }
+    fun delete(@PathVariable accountId: String) =
+        accountServiceClient.deleteAccount(accountId)
 }

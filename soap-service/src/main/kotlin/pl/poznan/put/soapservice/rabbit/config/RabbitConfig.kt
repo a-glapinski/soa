@@ -1,4 +1,4 @@
-package pl.poznan.put.restservice.rabbit
+package pl.poznan.put.soapservice.rabbit.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.amqp.core.Queue

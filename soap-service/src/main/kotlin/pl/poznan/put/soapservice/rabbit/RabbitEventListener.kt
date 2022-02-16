@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
 import pl.poznan.put.soapservice.account.event.AccountDeleted
 import pl.poznan.put.soapservice.payment.PaymentService
-import pl.poznan.put.soapservice.rabbit.EventsConfig.Companion.REST_QUEUE
+import pl.poznan.put.soapservice.rabbit.config.EventsConfig.Companion.REST_QUEUE
 
 @Component
 @RabbitListener(queues = [REST_QUEUE])

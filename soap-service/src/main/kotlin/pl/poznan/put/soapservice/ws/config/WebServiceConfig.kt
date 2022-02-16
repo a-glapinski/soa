@@ -1,4 +1,4 @@
-package pl.poznan.put.soapservice.ws
+package pl.poznan.put.soapservice.ws.config
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean
 import org.springframework.context.ApplicationContext
@@ -34,6 +34,6 @@ class WebServiceConfig : WsConfigurerAdapter() {
         }
 
     @Bean
-    fun countriesSchema(): XsdSchema =
+    fun paymentsSchema(): XsdSchema =
         SimpleXsdSchema(ClassPathResource("payments.xsd"))
 }

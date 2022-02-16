@@ -3,7 +3,7 @@ package pl.poznan.put.restservice.rabbit
 import mu.KotlinLogging
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Component
-import pl.poznan.put.restservice.rabbit.EventsConfig.Companion.REST_QUEUE
+import pl.poznan.put.restservice.rabbit.config.EventsConfig.Companion.REST_QUEUE
 
 @Component
 class RabbitEventPublisher(

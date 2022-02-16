@@ -3,7 +3,7 @@ package pl.poznan.put.soapservice.rabbit
 import mu.KotlinLogging
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Component
-import pl.poznan.put.soapservice.rabbit.EventsConfig.Companion.SOAP_QUEUE
+import pl.poznan.put.soapservice.rabbit.config.EventsConfig.Companion.SOAP_QUEUE
 
 @Component
 class RabbitEventPublisher(
