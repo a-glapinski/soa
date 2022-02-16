@@ -15,7 +15,7 @@ import pl.poznan.put.gateway.wsdl.SettlePaymentRequest
 import pl.poznan.put.gateway.wsdl.SettlePaymentResponse
 
 class PaymentServiceClient : WebServiceGatewaySupport() {
-    @Value("services.payment.wsdl.url")
+    @Value("\${services.payment.wsdl.url}")
     private lateinit var paymentsWsdlUrl: String
 
     private val log = KotlinLogging.logger {}
