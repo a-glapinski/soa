@@ -21,13 +21,13 @@ class PaymentController(
     fun getUserPayments(@RequestParam accountUsername: String): List<PaymentDTO> =
         paymentServiceClient.getAccountPayments(accountUsername)
 
-    @PutMapping("/settle-payment")
+    @PutMapping("/settle")
     fun settlePayment(@RequestParam transactionId: String) {
         paymentServiceClient.settlePayment(transactionId)
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/issue-payment")
+    @PostMapping("/issue")
     fun issuePayment(@RequestBody issuePaymentDTO: IssuePaymentDTO) {
         paymentServiceClient.issuePayment(issuePaymentDTO)
     }

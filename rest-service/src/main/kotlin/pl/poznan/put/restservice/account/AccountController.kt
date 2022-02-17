@@ -25,6 +25,7 @@ class AccountController(
         accountService.create(account)
 
     @DeleteMapping("/{accountId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable accountId: String) {
         accountService.delete(accountId)
     }
