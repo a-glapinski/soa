@@ -2,7 +2,7 @@ server:
   port: 8080
 services:
   account:
-    url: http://localhost:8081
+    url: ${ACCOUNT_SERVICE_URL:http://localhost:8081}
   payment:
     wsdl:
-      url: http://localhost:8082/ws/payments
+      url: ${PAYMENT_SERVICE_URL:http://localhost:8082/ws/payments}

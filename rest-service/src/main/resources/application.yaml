@@ -4,7 +4,7 @@ spring:
   datasource:
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5432/rest-db
+    url: jdbc:postgresql://${DB_URL:localhost:5432/rest-db}
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -17,7 +17,7 @@ spring:
       simple:
         auto-startup: true
         default-requeue-rejected: false
-    host: localhost
-    port: 5672
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
     username: guest
     password: guest

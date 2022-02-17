@@ -10,7 +10,7 @@ import pl.poznan.put.gateway.account.dto.AccountDTO
 
 @FeignClient(
     name = "accounts",
-    url = "http://localhost:8081",
+    url = "\${services.account.url}",
     path = "accounts"
 )
 interface AccountServiceClient {

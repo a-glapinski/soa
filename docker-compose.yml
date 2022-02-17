@@ -6,6 +6,8 @@ services:
     image: postgres:14.1
     ports:
       - "5432:5432"
+    networks:
+      - soa
     environment:
       POSTGRES_DB: rest-db
       POSTGRES_USER: postgres
@@ -15,6 +17,8 @@ services:
     image: postgres:14.1
     ports:
       - "5433:5432"
+    networks:
+      - soa
     environment:
       POSTGRES_DB: soap-db
       POSTGRES_USER: postgres
@@ -23,9 +27,54 @@ services:
     container_name: rabbitmq
     image: rabbitmq:3.9.13-management
     volumes:
-#      - ./rabbitconfig/data:/var/lib/rabbitmq:rw
       - ./rabbitconfig/definitions.json:/etc/rabbitmq/definitions.json:ro
       - ./rabbitconfig/advanced.config:/etc/rabbitmq/advanced.config:ro
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - soa
+  gateway:
+    container_name: gateway
+    image: gateway:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rest-service
+      - soap-service
+    networks:
+      - soa
+    environment:
+      ACCOUNT_SERVICE_URL: http://rest-service:8081
+      PAYMENT_SERVICE_URL: http://soap-service:8082/ws/payments
+  rest-service:
+    container_name: rest-service
+    image: rest-service:0.0.1-SNAPSHOT
+    ports:
+      - "8081:8081"
+    depends_on:
+      - rest-db
+      - rabbitmq
+    networks:
+      - soa
+    environment:
+      DB_URL: rest-db:5432/rest-db
+      RABBIT_HOST: rabbitmq
+      RABBIT_PORT: 5672
+  soap-service:
+    container_name: soap-service
+    image: soap-service:0.0.1-SNAPSHOT
+    ports:
+      - "8082:8082"
+    depends_on:
+      - soap-db
+      - rabbitmq
+    networks:
+      - soa
+    environment:
+      DB_URL: soap-db:5432/soap-db
+      RABBIT_HOST: rabbitmq
+      RABBIT_PORT: 5672
+
+networks:
+  soa:
